@@ -43,3 +43,17 @@ neighboursOfCell row col board = leftCell row col board + rightCell row col boar
                                  + upperCell row col board + lowerCell row col board
                                  + upperLeftCell row col board + lowerLeftCell row col board
                                  + upperRightCell row col board + lowerRightCell row col board
+
+neighbours :: [[Int]] -> [[Int]]
+neighbours board = undefined
+
+zipBoardWithIndices :: Int -> Int -> [[Int]] -> [[(Int,Int,Int)]]
+zipBoardWithIndices _ _ [] = []
+zipBoardWithIndices firstRow firstCol (x:xs) = (zipRowWithIndices firstRow firstCol x) : (zipBoardWithIndices (firstRow + 1) firstCol xs)
+
+zipRowWithIndices :: Int -> Int -> [Int] -> [(Int,Int,Int)]
+zipRowWithIndices _ _ [] = []
+zipRowWithIndices rowNum firstCol (v:vs) = (zipColWithIndices rowNum firstCol  v) : (zipRowWithIndices rowNum (firstCol + 1) vs)
+
+zipColWithIndices :: Int -> Int -> Int -> (Int, Int, Int)
+zipColWithIndices rowNum colNum value  = (rowNum, colNum, value)

@@ -177,3 +177,16 @@ spec = describe "neighbours" $ do
       neighboursOfCell 0 2 [[0,1,1],[0,1,1],[0,0,0]] `shouldBe` 3
     it "right corner cell with three neighbours" $ do
       neighboursOfCell 2 2 [[0,0,0],[0,1,1],[0,1,1]] `shouldBe` 3
+
+  describe "neighbours" $ do
+    it "no living cells -> no neighbours" $ do
+      neighbours [[0,0,0],[0,0,0],[0,0,0]] `shouldBe` [[0,0,0],[0,0,0],[0,0,0]]
+
+  describe "zipBoardWithIndices" $ do
+    it "add indices" $ do
+      zipBoardWithIndices 0 0 [[0,0,0],[0,0,0],[0,0,0]] `shouldBe` [[(0,0,0),(0,1,0),(0,2,0)],
+                                                                [(1,0,0),(1,1,0),(1,2,0)],
+                                                                [(2,0,0),(2,1,0),(2,2,0)]]
+  describe "zipRowWithIndeces" $ do
+    it "add indices" $ do
+      zipRowWithIndices 1 0 [0,0,0] `shouldBe` [(1,0,0), (1,1,0), (1,2,0)]
