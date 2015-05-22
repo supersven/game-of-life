@@ -27,9 +27,8 @@ printRow [] = return()
 printRow (c:cells) = do case c of
                          1 -> do setSGR [SetColor Foreground Vivid Green]
                                  putChar '+'
-                                 setSGR [SetColor Foreground Vivid Red]
-
-                         0 -> putChar '-'
+                         0 -> do setSGR [SetColor Foreground Dull Red]
+                                 putChar '-'
                         printRow cells
 
 generateField :: Int -> Int -> [[Int]]
