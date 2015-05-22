@@ -1,7 +1,20 @@
 module Main where
+import           Control.Concurrent
+import           Neighbours
+import           System.Console.ANSI
 
 main :: IO ()
-main = putStr "Foo Bar"
+main = game [[0,1,1],[0,0,0],[0,1,0]] 50
+
+game :: [[Int]] -> Int -> IO()
+game _ 0 = return()
+game board runsLeft = do
+                        printBoard board
+                        putChar '\n'
+                        let nextGen = nextGeneration board
+                        threadDelay 1000000
+                        clearScreen
+                        game nextGen (runsLeft - 1)
 
 printBoard :: [[Int]] -> IO()
 printBoard [] = return()
