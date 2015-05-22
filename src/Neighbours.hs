@@ -5,20 +5,20 @@ notInBounds row col board | col < 0 || row < 0 || col >= length board || row >= 
                           | otherwise = False
 
 leftCell :: Int -> Int -> [[Int]] -> Int
-leftCell row col board = cell row (col - 1) board
+leftCell row col = cell row (col - 1)
 
 rightCell :: Int -> Int -> [[Int]] -> Int
-rightCell row col board = cell row (col + 1) board
+rightCell row col = cell row (col + 1)
 
 cell :: Int -> Int -> [[Int]] -> Int
 cell row col board | notInBounds row col board = 0
 cell row col board = (board !! row) !! col
 
 upperCell :: Int -> Int -> [[Int]] -> Int
-upperCell row col board = cell (row -1) col board
+upperCell row = cell (row -1)
 
 lowerCell :: Int -> Int -> [[Int]] -> Int
-lowerCell row col board = cell (row +1) col board
+lowerCell row = cell (row +1)
 
 upperLeftCell :: Int -> Int -> [[Int]] -> Int
 upperLeftCell row = leftCell (row -1)
