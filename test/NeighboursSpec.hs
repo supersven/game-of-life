@@ -194,3 +194,7 @@ spec = describe "neighbours" $ do
       neighbours [[1,1,1],[0,0,0],[0,0,0]] `shouldBe` [[1,2,1],[2,3,2],[0,0,0]]
     it "neighbours in a col" $ do
       neighbours [[0,1,0],[0,1,0],[0,1,0]] `shouldBe` [[2,1,2],[3,2,3],[2,1,2]]
+
+  describe "nextGeneration" $ do
+    it "no living cells -> no living cells" $ do
+      nextGeneration [[0,0,0],[0,0,0],[0,0,0]] `shouldBe` [[0,0,0],[0,0,0],[0,0,0]]

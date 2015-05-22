@@ -69,3 +69,11 @@ neighboursRow board (x:xs) = neighboursTupel board x :neighboursRow board xs
 
 neighboursTupel :: [[Int]] -> (Int, Int, Int)  -> Int
 neighboursTupel board (row, col, _) = neighboursOfCell row col board
+
+nextGeneration :: [[Int]] -> [[Int]]
+nextGeneration prevGeneration = map (map aliveInNextGen) (neighbours prevGeneration)
+
+aliveInNextGen :: Int -> Int
+aliveInNextGen numOfNeighbours | numOfNeighbours <= 1 = 0
+                               | numOfNeighbours <= 3 = 1
+                               | otherwise = 0
