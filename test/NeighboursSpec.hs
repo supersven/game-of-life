@@ -198,3 +198,18 @@ spec = describe "neighbours" $ do
   describe "nextGeneration" $ do
     it "no living cells -> no living cells" $ do
       nextGeneration [[0,0,0],[0,0,0],[0,0,0]] `shouldBe` [[0,0,0],[0,0,0],[0,0,0]]
+
+  describe "notInBounds" $ do
+    it "col too small" $ do
+      notInBounds 0 (-1) [[0,0,0],[0,0,0],[0,0,0]] `shouldBe` True
+    it "row too small" $ do
+      notInBounds (-1) 0 [[0,0,0],[0,0,0],[0,0,0]] `shouldBe` True
+    it "col and row too small" $ do
+      notInBounds (-1) (-1) [[0,0,0],[0,0,0],[0,0,0]] `shouldBe` True
+
+    it "col too big" $ do
+      notInBounds 0 3 [[0,0,0],[0,0,0],[0,0,0]] `shouldBe` True
+    it "row too big" $ do
+      notInBounds 3 0 [[0,0,0],[0,0,0],[0,0,0]] `shouldBe` True
+    it "col and row too big" $ do
+      notInBounds 3 3 [[0,0,0],[0,0,0],[0,0,0]] `shouldBe` True

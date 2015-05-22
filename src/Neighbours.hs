@@ -1,41 +1,35 @@
 module Neighbours where
 
--- leftNeighbours :: [[Int]] -> [[Int]]
--- leftNeighbours cells = undefined
+notInBounds :: Int -> Int -> [[Int]] -> Bool
+notInBounds row col board | col < 0 || row < 0 || col >= length board || row >= length board  = True
+                          | otherwise = False
 
 leftCell :: Int -> Int -> [[Int]] -> Int
-leftCell _ col _ | col <= 0 = 0
 leftCell row col board = cell row (col - 1) board
 
 rightCell :: Int -> Int -> [[Int]] -> Int
-rightCell _ col _ | col >= 2 = 0
 rightCell row col board = cell row (col + 1) board
 
 cell :: Int -> Int -> [[Int]] -> Int
+cell row col board | notInBounds row col board = 0
 cell row col board = (board !! row) !! col
 
 upperCell :: Int -> Int -> [[Int]] -> Int
-upperCell row _ _ | row <= 0 = 0
 upperCell row col board = cell (row -1) col board
 
 lowerCell :: Int -> Int -> [[Int]] -> Int
-lowerCell row _ _ | row >= 2 = 0
 lowerCell row col board = cell (row +1) col board
 
 upperLeftCell :: Int -> Int -> [[Int]] -> Int
-upperLeftCell row | row == 0 = \_ _ -> 0
 upperLeftCell row = leftCell (row -1)
 
 lowerRightCell :: Int -> Int -> [[Int]] -> Int
-lowerRightCell row | row >= 2 = \_ _ -> 0
 lowerRightCell row = rightCell (row +1)
 
 upperRightCell :: Int -> Int -> [[Int]] -> Int
-upperRightCell row | row == 0 = \_ _ -> 0
 upperRightCell row = rightCell (row -1)
 
 lowerLeftCell :: Int -> Int -> [[Int]] -> Int
-lowerLeftCell row | row >= 2 = \_ _ -> 0
 lowerLeftCell row = leftCell (row + 1)
 
 neighboursOfCell :: Int -> Int -> [[Int]] -> Int
