@@ -25,6 +25,6 @@ printBoard (r:rows) = do printRow r
 printRow :: [Int] -> IO()
 printRow [] = return()
 printRow (c:cells) = do case c of
-                         1 -> putChar '*'
-                         0 -> putChar '.'
+                         1 -> putChar '-'
+                         0 -> putChar '+'
                         printRow cells
