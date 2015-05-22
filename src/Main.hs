@@ -4,7 +4,7 @@ import           Neighbours
 import           System.Console.ANSI
 
 main :: IO ()
-main = game [[0,1,1],[0,0,0],[0,1,0]] 50
+main = game (generateField 40 40) 50
 
 game :: [[Int]] -> Int -> IO()
 game _ 0 = return()
@@ -25,6 +25,16 @@ printBoard (r:rows) = do printRow r
 printRow :: [Int] -> IO()
 printRow [] = return()
 printRow (c:cells) = do case c of
-                         1 -> putChar '-'
-                         0 -> putChar '+'
+                         1 -> do setSGR [SetColor Foreground Vivid Green]
+                                 putChar '+'
+                                 setSGR [SetColor Foreground Vivid Red]
+
+                         0 -> putChar '-'
                         printRow cells
+
+generateField :: Int -> Int -> [[Int]]
+generateField 0 _  = []
+generateField rows cols = generateRow cols : generateField (rows -1) cols
+
+generateRow :: Int -> [Int]
+generateRow cols = [ if even v then 1 else 0 | v <- [1..cols]]
