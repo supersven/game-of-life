@@ -8,7 +8,7 @@ synopsis:            A simple implementation of Conway's Game of Life
 license:             BSD2
 license-file:        LICENSE
 author:              Sven Tennie
-maintainer:          sven.tennie@gmail.com
+maintainer:          sven.tennie -at- gmail.com
 -- copyright:           
 category:            Game
 build-type:          Simple
